@@ -10,9 +10,9 @@ console.log("Please enter valid positive numbers.");s
     let bmi = weight / (height * height);
     if(bmi < 18.5) {
         bmiCategory = "Underweight";
-    } else if (bmi >= 18.5 && bmi < 25) { 
+    } else if (bmi <= 24.9) { 
         bmiCategory = "Normal weight";
-    } else if (bmi >= 25 && bmi < 30) {
+    } else if (bmi <= 29.9) {
         bmiCategory = "Overweight";
     } else {
         bmiCategory = "Obesity";
