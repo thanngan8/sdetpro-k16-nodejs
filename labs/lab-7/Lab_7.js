@@ -1,25 +1,29 @@
-const readline = require('readline-sync');
-const inputSentence = readline.question("Enter a sentence: ");
+const Post = require("./Post");
+const RequestHandler = require("./RequestHandler");
+const readline = require("readline");
 
-function countWords(sentence) {
-    const words = sentence.split(/\s+/);
-    const wordCount = {};
+const readlineInterface = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 
-    words.forEach(function (word) {
-        word = word.toLowerCase();
-        if (wordCount[word]) {
-            wordCount[word]++;
-        } else {
-            wordCount[word] = 1;
-        }
+// Function to get user input
+function lab7() {
+    readlineInterface.question("Enter user ID: ", (userId) => {
+        readlineInterface.question("Enter post ID: ", (postId) => {
+            lab7_1(userId, postId);
+            readlineInterface.close();
+        });
     });
-    return wordCount;
 }
 
-const result = countWords(inputSentence);
-console.log("Số lần xuất hiện của từng từ:");
-for (const word in result) {
-    if (result.hasOwnProperty(word)) {
-        console.log(`${word}: ${result[word]}`);
-    }
+// Execution
+lab7();
+
+// Function Declaration
+async function lab7_1(userId, postId) {
+    const requestHandler = new RequestHandler();
+
+    await requestHandler.printTargetPost(userId, postId);
+    await requestHandler.printAllPosts(userId);
 }
